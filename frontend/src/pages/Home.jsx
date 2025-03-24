@@ -1,5 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
+//import { Login } from '../src/components/login';
+
 
 
 const Container = styled.div`
@@ -128,7 +130,7 @@ const Footer = styled.footer`
   }
 `;
 
-function App() {
+function Home() {
   return (
     <Container>
       {/* Header Section */}
@@ -184,8 +186,9 @@ function App() {
           <a href="#privacy">Privacy</a>
         </p>
       </Footer>
+      
     </Container>
   );
 }
 
-export default App;
+export default Home;
