@@ -1,14 +1,43 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, IconButton } from "@mui/material";
+import { Box, Typography, Button, Snackbar, Alert, IconButton } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import axios from "axios";
 
 const FileUpload = () => {
+  const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setFileName(selectedFile.name);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!file) {
+      setError("Please select a file before uploading.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      if (response.status === 200) {
+        setSuccess(true);
+        setFile(null);
+        setFileName("");
+      }
+    } catch (err) {
+      setError("Upload failed. Please try again.");
     }
   };
 
@@ -23,7 +52,6 @@ const FileUpload = () => {
         paddingBottom: "80px",
       }}
     >
-      {/* Upload Box */}
       <Box
         sx={{
           bgcolor: "#221b35",
@@ -41,7 +69,6 @@ const FileUpload = () => {
           Upload the materials you want to learn here
         </Typography>
 
-        {/* File Upload Area */}
         <Box
           sx={{
             border: "2px dashed rgba(255, 255, 255, 0.3)",
@@ -61,15 +88,9 @@ const FileUpload = () => {
           <Typography mt={1} color="white">
             {fileName ? fileName : "UPLOAD HERE"}
           </Typography>
-          <input
-            type="file"
-            id="fileInput"
-            hidden
-            onChange={handleFileChange}
-          />
+          <input type="file" id="fileInput" hidden onChange={handleFileChange} />
         </Box>
 
-        {/* Upload Button */}
         <Button
           variant="contained"
           sx={{
@@ -79,9 +100,22 @@ const FileUpload = () => {
             px: 4,
             "&:hover": { bgcolor: "#7748ff" },
           }}
+          onClick={handleUpload}
         >
           Upload
         </Button>
+
+        <Snackbar open={success} autoHideDuration={3000} onClose={() => setSuccess(false)}>
+          <Alert severity="success" onClose={() => setSuccess(false)}>
+            File uploaded successfully!
+          </Alert>
+        </Snackbar>
+
+        <Snackbar open={Boolean(error)} autoHideDuration={3000} onClose={() => setError("")}>
+          <Alert severity="error" onClose={() => setError("")}>
+            {error}
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );
