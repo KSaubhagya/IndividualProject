@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 
 const Container = styled.div`
   font-family: 'Poppins', sans-serif;

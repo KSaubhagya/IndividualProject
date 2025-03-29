@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ExpandMore } from "@mui/icons-material";
+import { useAuthContext } from "@asgardeo/auth-react";
 
+// All styled components including the missing UserProfile
 const NavbarContainer = styled.nav`
   background-color: #1a1528;
   padding: 15px 50px;
@@ -88,9 +90,26 @@ const ContactButton = styled.button`
   }
 `;
 
+// Add this missing styled component
+const UserProfile = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #c2b7f0;
+`;
+
 const Navbar = () => {
   const [learnOpen, setLearnOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const { state, signIn, signOut } = useAuthContext();
+
+  const handleLogin = async () => {
+    try {
+      await signIn();
+    } catch (error) {
+      console.error('Login error:', error);
+    }
+  };
 
   return (
     <NavbarContainer>
@@ -127,10 +146,17 @@ const Navbar = () => {
         <NavItem>EVENTS</NavItem>
       </NavLinks>
 
-      {/* Contact Button */}
-      <ContactButton>CONTACT US</ContactButton>
+      {/* Auth Button */}
+      {state.isAuthenticated ? (
+        <UserProfile>
+          <span>{state.username || state.email}</span>
+          <ContactButton onClick={() => signOut()}>LOG OUT</ContactButton>
+        </UserProfile>
+      ) : (
+        <ContactButton onClick={handleLogin}>SIGN IN/UP</ContactButton>
+      )}
     </NavbarContainer>
   );
 };
 
-export default Navbar;
+export default Navbar;  
