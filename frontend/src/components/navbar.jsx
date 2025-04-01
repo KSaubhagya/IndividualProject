@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { ExpandMore } from "@mui/icons-material";
 import { useAuthContext } from "@asgardeo/auth-react";
+import { Link } from "react-router-dom";
 
-// All styled components including the missing UserProfile
 const NavbarContainer = styled.nav`
   background-color: #1a1528;
   padding: 15px 50px;
@@ -12,10 +12,11 @@ const NavbarContainer = styled.nav`
   align-items: center;
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   display: flex;
   align-items: center;
-  
+  text-decoration: none;
+
   img {
     width: 50px;
     margin-right: 10px;
@@ -33,9 +34,10 @@ const NavLinks = styled.div`
   gap: 40px;
 `;
 
-const NavItem = styled.div`
+const NavItem = styled(Link)`
   font-weight: bold;
   color: white;
+  text-decoration: none;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -90,7 +92,6 @@ const ContactButton = styled.button`
   }
 `;
 
-// Add this missing styled component
 const UserProfile = styled.div`
   display: flex;
   align-items: center;
@@ -107,46 +108,43 @@ const Navbar = () => {
     try {
       await signIn();
     } catch (error) {
-      console.error('Login error:', error);
+      console.error("Login error:", error);
     }
   };
 
   return (
     <NavbarContainer>
-      {/* Logo */}
-      <Logo>
+      <Logo to="/">
         <img src="/logo.png" alt="EAD Logo" />
         <span>EAD</span>
       </Logo>
 
-      {/* Navigation Links */}
       <NavLinks>
-        <NavItem>ABOUT</NavItem>
+        <NavItem to="/about">ABOUT</NavItem>
 
         <Dropdown open={learnOpen} onMouseEnter={() => setLearnOpen(true)} onMouseLeave={() => setLearnOpen(false)}>
-          <NavItem>
+          <NavItem to="#">
             LEARN <ExpandMore fontSize="small" />
           </NavItem>
           <div className="dropdown-content">
-            <div className="dropdown-item">Courses</div>
-            <div className="dropdown-item">Tutorials</div>
+            <NavItem to="/courses" className="dropdown-item">Courses</NavItem>
+            <NavItem to="/tutorials" className="dropdown-item">Tutorials</NavItem>
           </div>
         </Dropdown>
 
         <Dropdown open={servicesOpen} onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
-          <NavItem>
+          <NavItem to="#">
             SERVICES <ExpandMore fontSize="small" />
           </NavItem>
           <div className="dropdown-content">
-            <div className="dropdown-item">Consulting</div>
-            <div className="dropdown-item">Development</div>
+            <NavItem to="/consulting" className="dropdown-item">Consulting</NavItem>
+            <NavItem to="/development" className="dropdown-item">Development</NavItem>
           </div>
         </Dropdown>
 
-        <NavItem>EVENTS</NavItem>
+        <NavItem to="/events">EVENTS</NavItem>
       </NavLinks>
 
-      {/* Auth Button */}
       {state.isAuthenticated ? (
         <UserProfile>
           <span>{state.username || state.email}</span>
@@ -159,4 +157,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;  
+export default Navbar;

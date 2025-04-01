@@ -1,50 +1,97 @@
 import React from "react";
-import { Box, Stack, Typography, Button, IconButton } from "@mui/material";
+import { Box, Stack, Typography, Button, IconButton, Divider } from "@mui/material";
 import { Facebook, Twitter, LinkedIn, YouTube, Instagram, Pinterest } from "@mui/icons-material";
 
 const Footer = () => {
   return (
     <Box
       sx={{
-        bgcolor: "#1a1528",
+        bgcolor: "#1a182b",
         color: "white",
         py: 5,
         px: { xs: 2, md: 10 },
-        textAlign: "center",
       }}
     >
       {/* Main Footer Content */}
-      <Stack
-        direction={{ xs: "column", md: "row" }}
-        spacing={5}
-        justifyContent="space-between"
-        alignItems="center"
-        textAlign={{ xs: "center", md: "left" }}
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '1fr 1px 1fr 1px 1fr' },
+          gap: { xs: 3, md: 5 },
+          alignItems: 'start',
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}
       >
-        {/* Logo */}
-        <Box>
+        {/* Logo Section */}
+        <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <img src="/logo.png" alt="Logo" style={{ width: 80 }} />
         </Box>
 
-        {/* Navigation Sections */}
-        <Stack spacing={1}>
-          <Typography fontWeight="bold">ABOUT</Typography>
-          <Typography>Services</Typography>
-          <Typography>Technologies</Typography>
-          <Typography>Join E-AD</Typography>
-        </Stack>
+        {/* First Divider */}
+        <Divider 
+          orientation="vertical" 
+          flexItem 
+          sx={{ 
+            borderColor: 'rgba(255, 255, 255, 0.2)', 
+            display: { xs: 'none', md: 'block' },
+            height: '100%'
+          }} 
+        />
 
-        <Stack spacing={1}>
-          <Typography fontWeight="bold">F.A.Q</Typography>
-          <Typography>Sitemap</Typography>
-          <Typography>Conditions</Typography>
-          <Typography>Licenses</Typography>
-        </Stack>
+        {/* Navigation Sections */}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', md: '1fr 1px 1fr' },
+            gap: { xs: 2, md: 5 },
+          }}
+        >
+          <Stack spacing={1} textAlign={{ xs: 'center', md: 'left' }}>
+            <Typography fontWeight="bold">ABOUT</Typography>
+            <Typography>Services</Typography>
+            <Typography>Technologies</Typography>
+            <Typography>Join E-AD</Typography>
+          </Stack>
+
+          <Divider 
+            orientation="vertical" 
+            flexItem 
+            sx={{ 
+              borderColor: 'rgba(255, 255, 255, 0.2)', 
+              display: { xs: 'none', md: 'block' },
+              height: '100%'
+            }} 
+          />
+
+          <Stack spacing={1} textAlign={{ xs: 'center', md: 'left' }}>
+            <Typography fontWeight="bold">F.A.Q</Typography>
+            <Typography>Sitemap</Typography>
+            <Typography>Conditions</Typography>
+            <Typography>Licenses</Typography>
+          </Stack>
+        </Box>
+
+        {/* Second Divider */}
+        <Divider 
+          orientation="vertical" 
+          flexItem 
+          sx={{ 
+            borderColor: 'rgba(255, 255, 255, 0.2)', 
+            display: { xs: 'none', md: 'block' },
+            height: '100%'
+          }} 
+        />
 
         {/* Social Section */}
-        <Stack alignItems="center">
+        <Box sx={{ textAlign: { xs: 'center', md: 'right' } }}>
           <Typography fontWeight="bold">SOCIALIZE WITH E-AD</Typography>
-          <Stack direction="row" spacing={1} mt={1}>
+          <Stack 
+            direction="row" 
+            spacing={1} 
+            mt={1} 
+            justifyContent={{ xs: 'center', md: 'flex-end' }}
+          >
             <IconButton sx={{ color: "white" }}><Facebook /></IconButton>
             <IconButton sx={{ color: "white" }}><Twitter /></IconButton>
             <IconButton sx={{ color: "white" }}><LinkedIn /></IconButton>
@@ -52,25 +99,35 @@ const Footer = () => {
             <IconButton sx={{ color: "white" }}><Instagram /></IconButton>
             <IconButton sx={{ color: "white" }}><Pinterest /></IconButton>
           </Stack>
-          <Button
-            variant="contained"
-            sx={{
-              bgcolor: "#9b88ff",
-              borderRadius: "20px",
-              px: 3,
-              mt: 2,
-              "&:hover": { bgcolor: "#7748ff" },
-            }}
-          >
-            BUILD YOUR WORLD
-          </Button>
-        </Stack>
-      </Stack>
+          <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "#9b88ff",
+                borderRadius: "20px",
+                px: 3,
+                mt: 2,
+                "&:hover": { bgcolor: "#7748ff" },
+              }}
+            >
+              BUILD YOUR WORLD
+            </Button>
+          </Box>
+        </Box>
+      </Box>
 
       {/* Copyright Section */}
-      <Typography mt={5} fontSize="12px">
-        2024 © E-AD - ALL RIGHTS RESERVED
-      </Typography>
+      <Box sx={{ 
+        mt: 5, 
+        textAlign: 'center',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+        pt: 3
+      }}>
+        <Typography variant="body2">
+          &copy; {new Date().getFullYear()} E-AD | <a href="#terms" style={{ color: "white", textDecoration: 'none' }}>Terms</a> |{" "}
+          <a href="#privacy" style={{ color: "white", textDecoration: 'none' }}>Privacy</a> - All Rights Reserved
+        </Typography>
+      </Box>
     </Box>
   );
 };

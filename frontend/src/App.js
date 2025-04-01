@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import QuizPage from './pages/Quiz';
 import FileUpload from './pages/FileUpload';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Loading from './components/Loading'; // Create a simple loading spinner component
 import './App.css';
 
@@ -20,7 +21,6 @@ function App() {
       <Router>
         {/* Navbar is always visible and handles auth state internally */}
         <Navbar />
-        
         <Routes>
           {/* Public route */}
           <Route path="/" element={<Home />} />
@@ -47,9 +47,12 @@ function App() {
             } 
           />
           
+        
           {/* Fallback route */}
           <Route path="*" element={<Navigate to="/" replace />} />
+         
         </Routes>
+        <Footer/>
       </Router>
     </div>
   );

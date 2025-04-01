@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Box, Stack, Typography, Button, IconButton } from "@mui/material";
 import { Facebook, Twitter, LinkedIn, YouTube, Instagram } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const QuizPage = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const navigate = useNavigate();
 
   const questions = [
     {
@@ -29,6 +31,9 @@ const QuizPage = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
+    } else {
+      // Navigate to FileUpload when quiz is finished
+      navigate("/FileUpload");
     }
   };
 
@@ -59,7 +64,7 @@ const QuizPage = () => {
           Take the <span style={{ color: "#9b88ff" }}>QUIZ</span>!
         </Typography>
         <Typography color="#ddd" mt={1} mb={3}>
-          Let’s DO this!
+          Let's DO this!
         </Typography>
 
         {/* Question Box */}
@@ -119,7 +124,7 @@ const QuizPage = () => {
           ))}
         </Stack>
 
-        {/* Next Button */}
+        {/* Next/Finish Button */}
         <Button
           variant="contained"
           onClick={handleNext}
@@ -132,11 +137,9 @@ const QuizPage = () => {
           }}
           disabled={selectedAnswer === null}
         >
-          NEXT
+          {currentQuestion === questions.length - 1 ? "FINISH" : "NEXT"}
         </Button>
       </Box>
-
-
     </Box>
   );
 };

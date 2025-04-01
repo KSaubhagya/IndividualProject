@@ -4,6 +4,8 @@ import { Book } from '@mui/icons-material';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import UploadIcon from '@mui/icons-material/Upload';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useNavigate } from "react-router-dom";
+
 
 // Sample images (replace with your actual image imports)
 import varietyImage from '../assests/variety.png';
@@ -304,6 +306,7 @@ const Footer = styled.footer`
 `;
 
 function Home() {
+  const navigate = useNavigate(); // Initialize navigation
   return (
     <Container>
       <Header>
@@ -314,7 +317,7 @@ function Home() {
             empower individuals to reach their potential through personalized
             learning experiences.
           </p>
-          <Button>Let's Get Started</Button>
+          <Button onClick={() => navigate('/quiz')}>Let's Get Started</Button>
         </HeroText>
       </Header>
 
@@ -413,16 +416,16 @@ function Home() {
         </div>
 
         <div className="cta-button">
-          <Button>Let's Get Started</Button>
+        <Button onClick={() => navigate('/quiz')}>Let's Get Started</Button>
         </div>
       </AboutSection>
 
-      <Footer>
+      {/* <Footer>
         <p>
           &copy; {new Date().getFullYear()} E-AD | <a href="#terms">Terms</a> |{" "}
-          <a href="#privacy">Privacy</a>
+          <a href="#privacy">Privacy</a> - All Rights Reserved
         </p>
-      </Footer>
+      </Footer> */}
     </Container>
   );
 }
