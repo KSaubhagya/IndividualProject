@@ -1,13 +1,29 @@
-import React, { useState } from "react";
-import { Box, Typography, Button, Snackbar, Alert, IconButton } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { useAuthContext } from "@asgardeo/auth-react";
+import { useNavigate } from "react-router-dom";
+import { Box, Typography, Button, Snackbar, Alert, IconButton, CircularProgress } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import axios from "axios";
 
 const FileUpload = () => {
+  const { state, getAccessToken } = useAuthContext();
+  const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Check authentication status
+  useEffect(() => {
+    if (!state.isLoading) {
+      if (!state.isAuthenticated) {
+        navigate("/"); // Redirect to home if not authenticated
+      } else {
+        setIsLoading(false);
+      }
+    }
+  }, [state, navigate]);
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -27,8 +43,14 @@ const FileUpload = () => {
     formData.append("file", file);
 
     try {
+      setIsLoading(true);
+      const token = await getAccessToken();
+      
       const response = await axios.post("http://127.0.0.1:8000/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { 
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${token}`
+        },
       });
 
       if (response.status === 200) {
@@ -37,9 +59,22 @@ const FileUpload = () => {
         setFileName("");
       }
     } catch (err) {
-      setError("Upload failed. Please try again.");
+      setError(err.response?.data?.message || "Upload failed. Please try again.");
+      if (err.response?.status === 401) {
+        navigate("/"); // Redirect if token is invalid
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  if (state.isLoading || isLoading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress color="secondary" />
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -101,8 +136,9 @@ const FileUpload = () => {
             "&:hover": { bgcolor: "#7748ff" },
           }}
           onClick={handleUpload}
+          disabled={isLoading}
         >
-          Upload
+          {isLoading ? "Uploading..." : "Upload"}
         </Button>
 
         <Snackbar open={success} autoHideDuration={3000} onClose={() => setSuccess(false)}>

@@ -37,7 +37,7 @@ function App() {
             } 
           />
           <Route 
-            path="/file-upload" 
+            path="/FileUpload" 
             element={
               state.isAuthenticated ? (
                 <FileUpload />
