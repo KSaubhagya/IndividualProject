@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Stack, Typography, Button, IconButton, Divider } from "@mui/material";
-import { Facebook, Twitter, LinkedIn, YouTube, Instagram, Pinterest } from "@mui/icons-material";
+import { Facebook, Twitter, LinkedIn, YouTube, Instagram } from "@mui/icons-material";
 
 const Footer = () => {
   return (
@@ -97,7 +97,6 @@ const Footer = () => {
             <IconButton sx={{ color: "white" }}><LinkedIn /></IconButton>
             <IconButton sx={{ color: "white" }}><YouTube /></IconButton>
             <IconButton sx={{ color: "white" }}><Instagram /></IconButton>
-            <IconButton sx={{ color: "white" }}><Pinterest /></IconButton>
           </Stack>
           <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
             <Button
