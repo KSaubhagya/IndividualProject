@@ -5,7 +5,8 @@ import QuizPage from './pages/Quiz';
 import FileUpload from './pages/FileUpload';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Loading from './components/Loading'; // Create a simple loading spinner component
+import About from './pages/About';
+import Loading from './components/Loading'; //loading spinner
 import './App.css';
 
 function App() {
@@ -46,7 +47,16 @@ function App() {
               )
             } 
           />
-          
+          <Route 
+            path="/about" 
+            element={
+              state.isAuthenticated ? (
+                <About />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            } 
+          />
         
           {/* Fallback route */}
           <Route path="*" element={<Navigate to="/" replace />} />
