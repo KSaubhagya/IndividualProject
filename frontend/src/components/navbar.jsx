@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ExpandMore } from "@mui/icons-material";
 import { useAuthContext } from "@asgardeo/auth-react";
 import { Link } from "react-router-dom";
 
+import logo from "../assests/logo.png";
+import { API_URLS } from "../config/constants";
+
 const NavbarContainer = styled.nav`
   background-color: #1a1528;
-  padding: 15px 50px;
+  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,7 +105,9 @@ const UserProfile = styled.div`
 const Navbar = () => {
   const [learnOpen, setLearnOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const { state, signIn, signOut } = useAuthContext();
+  const { state, signIn, signOut, getBasicUserInfo } = useAuthContext();
+  const [synced, setSynced] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   const handleLogin = async () => {
     try {
@@ -112,37 +117,93 @@ const Navbar = () => {
     }
   };
 
+  // Load user info after redirect
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const info = await getBasicUserInfo();
+        console.log("Retrieved user from Asgardeo:", info);
+        setUserInfo(info);
+      } catch (err) {
+        console.error("Failed to get user info:", err);
+      }
+    };
+
+    fetchUser();
+  }, [getBasicUserInfo]);
+
+  useEffect(() => {
+    if (userInfo?.username && !synced) {
+      const user = {
+        username: userInfo.displayName,
+        email: userInfo.username,
+        role: userInfo.roles,
+        last_modified: userInfo.updatedAt,
+        status: userInfo.active || "active",
+      };
+
+      console.log("Syncing user to backend:", user);
+
+      fetch(API_URLS.USER.USER, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("User synced:", data);
+          setSynced(true);
+        })
+        .catch((err) => {
+          console.error(" Sync failed:", err);
+        });
+    }
+  }, [userInfo, synced]);
+
   return (
     <NavbarContainer>
       <Logo to="/">
-        <img src="/logo.png" alt="EAD Logo" />
+        <img src={logo} alt="EAD Logo" />
         <span>EAD</span>
       </Logo>
 
       <NavLinks>
         <NavItem to="/about">ABOUT</NavItem>
 
-        <Dropdown open={learnOpen} onMouseEnter={() => setLearnOpen(true)} onMouseLeave={() => setLearnOpen(false)}>
+        <Dropdown
+          open={learnOpen}
+          onMouseEnter={() => setLearnOpen(true)}
+          onMouseLeave={() => setLearnOpen(false)}
+        >
           <NavItem to="#">
             LEARN <ExpandMore fontSize="small" />
           </NavItem>
           <div className="dropdown-content">
-            <NavItem to="/courses" className="dropdown-item">Courses</NavItem>
-            <NavItem to="/tutorials" className="dropdown-item">Tutorials</NavItem>
+            <NavItem to="/FileUpload" className="dropdown-item">
+              Notes
+            </NavItem>
+            <NavItem to="/module" className="dropdown-item">
+              Modules
+            </NavItem>
           </div>
         </Dropdown>
 
-        <Dropdown open={servicesOpen} onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+        <Dropdown
+          open={servicesOpen}
+          onMouseEnter={() => setServicesOpen(true)}
+          onMouseLeave={() => setServicesOpen(false)}
+        >
           <NavItem to="#">
             SERVICES <ExpandMore fontSize="small" />
           </NavItem>
           <div className="dropdown-content">
-            <NavItem to="/consulting" className="dropdown-item">Consulting</NavItem>
-            <NavItem to="/development" className="dropdown-item">Development</NavItem>
+            <NavItem to="/coaching" className="dropdown-item">
+              Consulting
+            </NavItem>
           </div>
         </Dropdown>
 
-        <NavItem to="/events">EVENTS</NavItem>
+        <NavItem to="/admin">ADMIN</NavItem>
       </NavLinks>
 
       {state.isAuthenticated ? (

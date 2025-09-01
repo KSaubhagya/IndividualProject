@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Box, Stack, Typography, Button, IconButton } from "@mui/material";
-import { Facebook, Twitter, LinkedIn, YouTube, Instagram } from "@mui/icons-material";
+import { Box, Stack, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const QuizPage = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState([]);
   const navigate = useNavigate();
 
   const questions = [
@@ -24,15 +24,31 @@ const QuizPage = () => {
   ];
 
   const handleOptionClick = (index) => {
-    setSelectedAnswer(index);
-  };
+  setSelectedAnswer(index);
 
-  const handleNext = () => {
+  const updatedAnswers = [...answers];
+  updatedAnswers[currentQuestion] = questions[currentQuestion].options[index];
+  setAnswers(updatedAnswers);
+};
+
+  const handleNext = async() => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
     } else {
-      // Navigate to FileUpload when quiz is finished
+
+      try {
+      await fetch("http://localhost:9000/quiz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answers }),
+      });
+      console.log("✅ Answers submitted:", answers);
+    } catch (err) {
+      console.error("❌ Error submitting quiz:", err);
+    }
+
+      // Navigate to FileUpload
       navigate("/FileUpload");
     }
   };

@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { Book } from "@mui/icons-material";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import UploadIcon from "@mui/icons-material/Upload";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useNavigate } from "react-router-dom";
+import PomPom from "../components/PomPom";
 
 import {
   Container,
@@ -14,7 +14,6 @@ import {
   Features,
   HowItWorks,
   AboutSection,
-  Footer,
 } from "../styles/HomeStyles";
 
 import varietyImage from "../assests/variety.png";
@@ -24,9 +23,10 @@ import awarenessImage from "../assests/awareness.avif";
 import aboutImage from "../assests/para.jpeg";
 
 function Home() {
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
   return (
     <Container>
+      <PomPom />
       <Header>
         <HeroText>
           <h1>E-Learning Platform for ADHD</h1>
@@ -35,7 +35,9 @@ function Home() {
             empower individuals to reach their potential through personalized
             learning experiences.
           </p>
-          <Button onClick={() => navigate("/quiz")}>Let's Get Started</Button>
+          <Button onClick={() => navigate("/FileUpload")}>
+            Let's Get Started
+          </Button>
         </HeroText>
       </Header>
 
@@ -82,9 +84,7 @@ function Home() {
               <div className="step">
                 <QuestionMarkIcon style={{ fontSize: 40 }} />
               </div>
-              <p className="step-text">
-                Take our quiz to identify your learning style
-              </p>
+              <p className="step-text">Choose the style that let you focus</p>
             </div>
             <ArrowForwardIosIcon className="arrow" />
             <div className="step-item">
@@ -152,16 +152,11 @@ function Home() {
         </div>
 
         <div className="cta-button">
-          <Button onClick={() => navigate("/quiz")}>Let's Get Started</Button>
+          <Button onClick={() => navigate("/FileUpload")}>
+            Let's Get Started
+          </Button>
         </div>
       </AboutSection>
-
-      {/* <Footer>
-        <p>
-          &copy; {new Date().getFullYear()} E-AD | <a href="#terms">Terms</a> |{" "}
-          <a href="#privacy">Privacy</a> - All Rights Reserved
-        </p>
-      </Footer> */}
     </Container>
   );
 }

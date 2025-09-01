@@ -1,34 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-  font-family: 'Poppins', sans-serif;
-  background-color: #2c2b3e;
+  font-family: "Poppins", sans-serif;
+  // background-color: #2c2b3e;
   color: #ffffff;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-`;
-
-export const Header = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #4b4b6b, #2c2b3e);
-  text-align: center;
-`;
-
-export const HeroText = styled.div`
-  max-width: 800px;
-  h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-  p {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-  }
 `;
 
 export const Button = styled.button`
@@ -96,74 +74,9 @@ export const Features = styled.section`
   }
 `;
 
-export const HowItWorks = styled.section`
-  padding: 50px 20px;
-  text-align: center;
-  background-color: #2c2b3e;
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  .guide-heading {
-    font-size: 1.5rem;
-    margin-bottom: 50px;
-    color: #e0e0e0;
-    font-weight: 400;
-  }
-  .steps-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .steps {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    @media (max-width: 768px) {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  .step-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 200px;
-  }
-  .step {
-    background-color: #6c63ff;
-    color: white;
-    padding: 20px;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  .step-text {
-    text-align: center;
-    font-size: 1rem;
-    color: #e0e0e0;
-    margin-top: 0;
-  }
-  .arrow {
-    color: #6c63ff;
-    font-size: 2rem;
-    margin: 40px 10px 0;
-    @media (max-width: 768px) {
-      transform: rotate(90deg);
-      margin: 20px 0;
-    }
-  }
-`;
-
 export const AboutSection = styled.section`
   padding: 80px 20px;
-  background-color: #2c2b3e;
+  // background-color: #2c2b3e;
   .divider {
     height: 2px;
     background: linear-gradient(90deg, transparent, #6c63ff, transparent);
@@ -212,7 +125,7 @@ export const AboutSection = styled.section`
   .description {
     font-size: 1rem;
     line-height: 1.6;
-    color:rgb(199, 197, 197);
+    color: rgb(199, 197, 197);
     margin-bottom: 30px;
     text-align: justify;
     text-align-last: right;
@@ -233,7 +146,7 @@ export const AboutSection = styled.section`
     padding: 20px;
     display: flex;
     justify-content: center;
-    margin-left: -100px; 
+    margin-left: -100px;
   }
   .parallelogram {
     width: 100%;
@@ -246,10 +159,10 @@ export const AboutSection = styled.section`
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     position: relative;
     img {
-      width: 170%;
+      width: 150%;
       height: 100%;
       object-fit: cover;
-     transform: skewX(15deg) translateX(-5%);
+      transform: skewX(15deg) translateX(-5%);
     }
   }
   .about-content {
@@ -265,7 +178,7 @@ export const AboutSection = styled.section`
   .about-text {
     font-size: 1rem;
     line-height: 1.6;
-    color:rgb(199, 197, 197);
+    color: rgb(199, 197, 197);
     margin-bottom: 20px;
     text-align: justify;
     text-align-last: right;
@@ -273,20 +186,5 @@ export const AboutSection = styled.section`
   .cta-button {
     text-align: center;
     margin-top: 50px;
-  }
-`;
-
-export const Footer = styled.footer`
-  background-color: #1a182b;
-  padding: 20px;
-  text-align: center;
-  color: #a0a0a0;
-  a {
-    color: #6c63ff;
-    text-decoration: none;
-    font-weight: 600;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `;

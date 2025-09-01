@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-  font-family: 'Poppins', sans-serif;
-  background-color: #2c2b3e;
+  font-family: "Poppins", sans-serif;
+  // background-color: #2c2b3e;
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -14,7 +14,7 @@ export const Header = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #4b4b6b, #2c2b3e);
+  // background: linear-gradient(135deg, #4b4b6b, #2c2b3e);
   text-align: center;
 `;
 
@@ -212,7 +212,7 @@ export const AboutSection = styled.section`
   .description {
     font-size: 1rem;
     line-height: 1.6;
-    color:rgb(199, 197, 197);
+    color: rgb(199, 197, 197);
     margin-bottom: 30px;
     text-align: justify;
     text-align-last: right;
@@ -233,7 +233,7 @@ export const AboutSection = styled.section`
     padding: 20px;
     display: flex;
     justify-content: center;
-    margin-left: -100px; 
+    margin-left: -100px;
   }
   .parallelogram {
     width: 100%;
@@ -249,7 +249,7 @@ export const AboutSection = styled.section`
       width: 170%;
       height: 100%;
       object-fit: cover;
-     transform: skewX(15deg) translateX(-5%);
+      transform: skewX(15deg) translateX(-5%);
     }
   }
   .about-content {
@@ -265,7 +265,7 @@ export const AboutSection = styled.section`
   .about-text {
     font-size: 1rem;
     line-height: 1.6;
-    color:rgb(199, 197, 197);
+    color: rgb(199, 197, 197);
     margin-bottom: 20px;
     text-align: justify;
     text-align-last: right;
@@ -273,20 +273,5 @@ export const AboutSection = styled.section`
   .cta-button {
     text-align: center;
     margin-top: 50px;
-  }
-`;
-
-export const Footer = styled.footer`
-  background-color: #1a182b;
-  padding: 20px;
-  text-align: center;
-  color: #a0a0a0;
-  a {
-    color: #6c63ff;
-    text-decoration: none;
-    font-weight: 600;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `;
