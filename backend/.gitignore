@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+venv.bak/
+*.env
+
+# VS Code
+.vscode/
+
+# FastAPI
+instance/
+*.db
+*.sqlite
+*.py[cod]
+*.pyd
+*.mypy_cache/
+.dmypy.json
+.pytest_cache/
+coverage/
+htmlcov/
+
+# Pydantic settings cache (if using compiled models)
+*.pydantic_cache/
+
+# React (frontend)
+frontend/node_modules/
+frontend/build/
+frontend/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+.coverage
+.tox/
+.pytest_cache/
+
+# IDEs
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Misc
+*.bak
+*.swp
+*.lock
