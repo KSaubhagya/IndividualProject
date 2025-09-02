@@ -14,26 +14,6 @@ This project aims to develop a personalized learning platform for students with 
 
 ---
 
-## Project Structure
-
-project-root/
-│
-├── backend/ # Backend application (FastAPI/Django/etc.)
-│ ├── main.py # Entry point
-│ ├── app/ # Application modules
-│ └── requirements.txt
-│
-├── frontend/ # Frontend application (React/Next.js/etc.)
-│ ├── src/
-│ ├── public/
-│ └── package.json
-│
-├── assets/ # Images, icons, and other static assets
-├── scripts/ # Utility scripts for setup or deployment
-└── README.md # Project documentation
-
----
-
 ## Startup Instructions
 
 Follow these steps to set up and run the project:
