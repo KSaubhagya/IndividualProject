@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Stack,
@@ -27,7 +26,6 @@ const Footer = () => {
         px: { xs: 2, md: 10 },
       }}
     >
-      {/* Main Footer Content */}
       <Box
         sx={{
           display: "grid",
@@ -38,12 +36,10 @@ const Footer = () => {
           margin: "0 auto",
         }}
       >
-        {/* Logo Section */}
         <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
           <img src={logo} alt="Logo" style={{ width: 120 }} />
         </Box>
 
-        {/* First Divider */}
         <Divider
           orientation="vertical"
           flexItem
@@ -54,7 +50,6 @@ const Footer = () => {
           }}
         />
 
-        {/* Navigation Sections */}
         <Box
           sx={{
             display: "grid",
@@ -87,7 +82,6 @@ const Footer = () => {
           </Stack>
         </Box>
 
-        {/* Second Divider */}
         <Divider
           orientation="vertical"
           flexItem
@@ -98,7 +92,6 @@ const Footer = () => {
           }}
         />
 
-        {/* Social Section */}
         <Box sx={{ textAlign: { xs: "center", md: "right" } }}>
           <Typography fontWeight="bold">SOCIALIZE WITH E-AD</Typography>
           <Stack
@@ -145,7 +138,6 @@ const Footer = () => {
         </Box>
       </Box>
 
-      {/* Copyright Section */}
       <Box
         sx={{
           mt: 5,

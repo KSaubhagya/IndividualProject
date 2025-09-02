@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   DashboardLayout,
   Sidebar,
@@ -11,6 +11,7 @@ import {
 } from "../styles/AdminDashboardStyles";
 import Loading from "../components/Loading";
 import { Link } from "react-router-dom";
+import { API_URLS } from "../config/constants";
 
 const AdminDashboard = () => {
   const [dashboardStats, setDashboardStats] = useState(null);
@@ -24,10 +25,7 @@ const AdminDashboard = () => {
         setLoading(true);
         setError(null);
 
-        // Fetch statistics - using /stats endpoint instead of /dashboard-stats
-        const statsResponse = await fetch(
-          "http://localhost:9000/api/admin/stats"
-        );
+        const statsResponse = await fetch(API_URLS.ADMIN.STATS);
 
         if (!statsResponse.ok) {
           throw new Error(`Stats API failed: ${statsResponse.status}`);
@@ -35,10 +33,7 @@ const AdminDashboard = () => {
         const statsData = await statsResponse.json();
         setDashboardStats(statsData);
 
-        // Fetch user list - using /user-list endpoint instead of /users
-        const usersResponse = await fetch(
-          "http://localhost:9000/api/admin/user-list"
-        );
+        const usersResponse = await fetch(API_URLS.ADMIN.USER_LIST);
 
         if (!usersResponse.ok) {
           throw new Error(`User list API failed: ${usersResponse.status}`);

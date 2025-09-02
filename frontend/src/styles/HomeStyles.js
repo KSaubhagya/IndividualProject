@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   font-family: "Poppins", sans-serif;
-  // background-color: #2c2b3e;
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -14,7 +13,6 @@ export const Header = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  // background: linear-gradient(135deg, #4b4b6b, #2c2b3e);
   text-align: center;
 `;
 

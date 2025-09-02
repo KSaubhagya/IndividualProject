@@ -1,4 +1,3 @@
-# routers/files.py
 from fastapi import APIRouter, Depends, Form, UploadFile, File, HTTPException
 from datetime import datetime, timezone
 from app.database import get_db
@@ -15,11 +14,10 @@ from app.utils.create_style import create_styled_pdf_pdf, create_styled_pdf_text
 
 router = APIRouter(prefix="/files", tags=["files"])
 
-# make sure processed_files dir exists
 PROCESSED_DIR = "processed_files"
 os.makedirs(PROCESSED_DIR, exist_ok=True)
 
-# text extraction functions 
+# text extraction 
 def extract_pdf_text(path: str) -> str:
     try:
         doc = fitz.open(path)
@@ -69,7 +67,7 @@ async def process_file(
             tmp.write(content)
             tmp_path = tmp.name
 
-        # Extract text based on file type
+
         try:
             if file_extension == ".pdf":
                 text = extract_pdf_text(tmp_path)
@@ -87,7 +85,7 @@ async def process_file(
             os.unlink(tmp_path)
             raise HTTPException(status_code=400, detail=f"Text extraction failed: {str(extraction_error)}")
         
-        # Generate styled PDF with options
+        # Generate styled PDF 
         output_pdf_name = f"{file_id}_processed.pdf"
         output_pdf_path = os.path.join(PROCESSED_DIR, output_pdf_name)
 
@@ -104,17 +102,17 @@ async def process_file(
         else:
             create_styled_pdf_text(text, output_file=output_pdf_path, options=styling_options)
 
-        # Clean up temp file
+        
         os.unlink(tmp_path)
         
-        # Store file metadata in database
+        # Store metadata 
         doc = {
             "file_id": file_id,
             "file_name": original_filename,
             "upload_date": datetime.now(timezone.utc),
             "file_extension": file_extension,
             "processed_file_path": output_pdf_path,
-            "styling_options": styling_options,  # Store options for reference
+            "styling_options": styling_options,  # Store 
             "status": "processed"
         }
         result = await db.files.insert_one(doc)
@@ -138,7 +136,7 @@ async def save_cloudinary_urls(
 ):
     """Store Cloudinary URLs after frontend uploads"""
     try:
-        # Update document with Cloudinary URLs
+        # Update with Cloudinary URLs
         await db.files.update_one(
             {"file_id": file_data.get("file_id")},
             {"$set": {
@@ -170,7 +168,7 @@ async def download_file(file_id: str, db=Depends(get_db)):
         if not file_path or not os.path.exists(file_path):
             raise HTTPException(status_code=404, detail="Processed file not found")
         
-        # Return the file for download
+        # Return for download
         return FileResponse(
             file_path,
             filename=os.path.basename(file_path),

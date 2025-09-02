@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { ExpandMore } from "@mui/icons-material";
 import { useAuthContext } from "@asgardeo/auth-react";
@@ -117,7 +117,6 @@ const Navbar = () => {
     }
   };
 
-  // Load user info after redirect
   useEffect(() => {
     const fetchUser = async () => {
       try {

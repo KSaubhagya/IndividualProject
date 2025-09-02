@@ -1,4 +1,3 @@
-import React from "react";
 import { BlogGrid, BlogCard } from "../styles/ModulesBlogsPageStyles";
 import CardOne from "../assests/images1.jpeg";
 import CardTwo from "../assests/img2.PNG";

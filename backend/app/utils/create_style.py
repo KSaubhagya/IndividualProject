@@ -1,4 +1,3 @@
-# services/pdf_service.py
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib import colors
@@ -17,9 +16,7 @@ def hex_to_rgb(hex_color):
     return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
 
 def create_styled_pdf_pdf(input_path: str, output_file="output.pdf", options=None) -> str:
-    """
    
-    """
     if options is None:
         options = {}
     
@@ -33,7 +30,6 @@ def create_styled_pdf_pdf(input_path: str, output_file="output.pdf", options=Non
         # Open DOCX and apply styling
         doc = Document(temp_docx)
         
-        # Get options with defaults
         text_size = options.get('textSize', 12)
         font_name = options.get('font', 'Arial')
         text_color = options.get('themeColor', '#0000ff')
@@ -47,14 +43,13 @@ def create_styled_pdf_pdf(input_path: str, output_file="output.pdf", options=Non
                 run.font.size = Pt(text_size)
                 run.font.color.rgb = RGBColor(*rgb_color)
 
-        # Step 3: Save styled DOCX
         styled_docx = temp_docx.replace("_temp.docx", "_styled.docx")
         doc.save(styled_docx)
 
-        # Step 4: Convert DOCX -> PDF
+        # Convert DOCX -> PDF
         docx2pdf_convert(styled_docx, output_file)
 
-        # Cleanup temp files
+        
         if os.path.exists(temp_docx):
             os.remove(temp_docx)
         if os.path.exists(styled_docx):
@@ -70,7 +65,7 @@ def create_styled_pdf_text(text: str, output_file="output.pdf", options=None) ->
         options = {}
     
     try:
-        # Map font names to standard PDF fonts that ReportLab supports
+        
         font_mapping = {
             "Arial": "Helvetica",
             "Verdana": "Helvetica", 
@@ -80,20 +75,20 @@ def create_styled_pdf_text(text: str, output_file="output.pdf", options=None) ->
         
         doc = SimpleDocTemplate(output_file, pagesize=letter)
         
-        # Get options with defaults
+      
         text_size = options.get('textSize', 12)
         font_name = options.get('font', 'Arial')
         text_color = options.get('themeColor', '#0000ff')
         spacing = options.get('spacing', False)
         
-        # Use mapped font (standard PDF font)
+       
         mapped_font = font_mapping.get(font_name, "Helvetica")
         
-        # Convert hex to RGB for ReportLab
+        # H2RGB for ReportLab
         rgb_color = hex_to_rgb(text_color)
         reportlab_color = colors.Color(rgb_color[0]/255, rgb_color[1]/255, rgb_color[2]/255)
         
-        # Create style with options
+        # Create style 
         style = ParagraphStyle(
             "Custom",
             fontName=mapped_font,

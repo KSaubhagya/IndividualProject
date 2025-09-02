@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   Typography,
@@ -54,7 +53,7 @@ const Notes = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 2, // gap between the buttons
+            gap: 2,
             mt: 3,
           }}
         >

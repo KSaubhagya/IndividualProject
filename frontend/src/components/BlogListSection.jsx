@@ -1,18 +1,32 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BlogList, BlogCard, SmallBlogCard } from "../styles/AdminBlogsStyles";
+import { API_URLS } from "../config/constants";
 
-const BlogListSection = ({ showAdminControls = true }) => {
+const BlogListSection = ({
+  showAdminControls = true,
+  blogs: propBlogs,
+  onDelete,
+}) => {
   const CardComponent = showAdminControls ? BlogCard : SmallBlogCard;
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState(propBlogs || []);
+
+  // conditional fetch
+  useEffect(() => {
+    if (!propBlogs) {
+      fetchBlogs();
+    }
+  }, [propBlogs]);
 
   useEffect(() => {
-    fetchBlogs();
-  }, []);
+    if (propBlogs) {
+      setBlogs(propBlogs);
+    }
+  }, [propBlogs]);
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch("http://localhost:9000/api/blogs");
+      const response = await fetch(API_URLS.BLOGS.GET_ALL);
       if (response.ok) {
         const data = await response.json();
         setBlogs(data);
@@ -22,20 +36,21 @@ const BlogListSection = ({ showAdminControls = true }) => {
     }
   };
 
-  const handleDelete = async (blogId) => {
-    try {
-      const response = await fetch(
-        `http://localhost:9000/api/blogs/${blogId}`,
-        {
+  const handleDeleteClick = async (blogId) => {
+    if (onDelete) {
+      onDelete(blogId);
+    } else {
+      try {
+        const response = await fetch(API_URLS.BLOGS.DELETE(blogId), {
           method: "DELETE",
-        }
-      );
+        });
 
-      if (response.ok) {
-        setBlogs(blogs.filter((blog) => blog.id !== blogId));
+        if (response.ok) {
+          setBlogs(blogs.filter((blog) => blog.id !== blogId));
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } catch (error) {
-      console.error("Error:", error);
     }
   };
 
@@ -50,29 +65,24 @@ const BlogListSection = ({ showAdminControls = true }) => {
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <CardComponent>
-            {/* Hide image when not in admin view */}
             {showAdminControls && blog.image && (
-              <img
-                src={`http://localhost:9000${blog.image}`}
-                alt={blog.title}
-              />
+              <img src={API_URLS.BLOGS.IMAGE(blog.image)} alt={blog.title} />
             )}
             <h3>{blog.title}</h3>
             <p>
               {blog.content
                 .split(/(?<=[.!?])\s+/)
-                .slice(0, 1)
+                .slice(0, showAdminControls ? 1 : 2)
                 .join(" ")}
             </p>
 
-            {/* Only show date + delete button in admin */}
             {showAdminControls && (
               <>
                 <span>{blog.date}</span>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    handleDelete(blog.id);
+                    handleDeleteClick(blog.id);
                   }}
                   style={{
                     background: "#6c63ff",

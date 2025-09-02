@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from app.models.quiz import QuizSubmission
 from app.database import get_db
-from app.database import MongoDB  # for type hinting
+from app.database import MongoDB 
 
 router = APIRouter(prefix="/quiz", tags=["quiz"])
 

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Slider, Switch, Typography, Button } from "@mui/material";
 
 const TextOptionsPanel = ({ onOptionsChange, onApplyOptions }) => {
   const [textSize, setTextSize] = useState(16);
   const [spacing, setSpacing] = useState(false);
   const [font, setFont] = useState("Arial");
-  const [themeColor, setThemeColor] = useState("#0000ff"); // Changed to blue as default
+  const [themeColor, setThemeColor] = useState("#0000ff");
 
   const fonts = ["Arial", "Verdana", "Times New Roman", "Courier New"];
 
@@ -44,7 +44,6 @@ const TextOptionsPanel = ({ onOptionsChange, onApplyOptions }) => {
     >
       <Typography variant="body1">Text Options</Typography>
 
-      {/* Text Size */}
       <Box>
         <Typography variant="body2">Text Size</Typography>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -61,7 +60,6 @@ const TextOptionsPanel = ({ onOptionsChange, onApplyOptions }) => {
         <Typography variant="caption">{textSize}px</Typography>
       </Box>
 
-      {/* Spacing */}
       <Box
         sx={{
           display: "flex",
@@ -84,7 +82,6 @@ const TextOptionsPanel = ({ onOptionsChange, onApplyOptions }) => {
         />
       </Box>
 
-      {/* Font */}
       <Box>
         <Typography variant="body2">Font</Typography>
         <select
@@ -107,7 +104,6 @@ const TextOptionsPanel = ({ onOptionsChange, onApplyOptions }) => {
         </select>
       </Box>
 
-      {/* Theme Color */}
       <Box>
         <Typography variant="body2">Text Color</Typography>
         <input
@@ -125,7 +121,6 @@ const TextOptionsPanel = ({ onOptionsChange, onApplyOptions }) => {
         />
       </Box>
 
-      {/* Apply Button */}
       <Button
         variant="contained"
         onClick={handleApply}

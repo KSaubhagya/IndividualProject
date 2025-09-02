@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import {
   Container,
   Section,
@@ -20,8 +19,7 @@ const ModulesBlogsPage = () => {
   return (
     <Container>
       <PomPom />
-      {/* <TopBanner>Check out our modules below!</TopBanner> */}
-      {/* Awareness Modules Section */}
+
       <Section>
         <SectionTitle>Awareness Modules</SectionTitle>
         <SectionSubtitle>
@@ -33,7 +31,6 @@ const ModulesBlogsPage = () => {
         </ModuleGrid>
       </Section>
 
-      {/* Blogs Section */}
       <Section>
         <SectionTitle>New Blogs from us!</SectionTitle>
         <SectionSubtitle>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const BottomCtaBar = styled.div`
   display: flex;
@@ -28,7 +27,6 @@ export const PillButton = styled.button`
 
 export const Container = styled.div`
   font-family: "Poppins", sans-serif;
-  // background-color: #2c2b3e;
   color: #ffffff;
   margin: 0;
   padding: 0;

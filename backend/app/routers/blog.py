@@ -50,7 +50,6 @@ async def create_blog(
     image: UploadFile = File(None)
 ):
     try:
-        # Handle image upload
         image_filename = None
         if image and image.filename:
             # Generate unique filename
@@ -62,12 +61,12 @@ async def create_blog(
             with open(image_path, "wb") as buffer:
                 shutil.copyfileobj(image.file, buffer)
         
-        # Load existing blogs
+       
         blogs = load_blogs()
         
-        # Create new blog entry
+        # Create new blog 
         new_blog = {
-            "id": len(blogs) + 1,
+            "id": max([blog["id"] for blog in blogs], default=0) + 1,
             "title": title,
             "author": author,
             "content": content,
@@ -89,7 +88,7 @@ async def delete_blog(blog_id: int):
     try:
         blogs = load_blogs()
         
-        # Find the blog to delete
+        
         blog_to_delete = None
         for blog in blogs:
             if blog["id"] == blog_id:
@@ -99,14 +98,14 @@ async def delete_blog(blog_id: int):
         if not blog_to_delete:
             raise HTTPException(status_code=404, detail="Blog not found")
         
-        # Delete associated image file if exists
+        
         if blog_to_delete.get("image"):
             image_filename = blog_to_delete["image"].split("/")[-1]
             image_path = os.path.join(UPLOAD_DIR, image_filename)
             if os.path.exists(image_path):
                 os.remove(image_path)
         
-        # Remove blog from list and save
+        
         blogs = [blog for blog in blogs if blog["id"] != blog_id]
         save_blogs(blogs)
         

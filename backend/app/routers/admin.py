@@ -5,8 +5,7 @@ from app.database import get_db, MongoDB
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 
 async def verify_admin_access():
-    """Placeholder for admin authentication."""
-    pass
+   pass
 
 @router.get("/stats", response_model=Dict[str, Any])  
 async def get_dashboard_stats(

@@ -14,7 +14,3 @@
 //         getUserInfo: ServiceBaseUrl + "/user-info",
 //     }
 // }
-
-export const cloudName = "kavindi";
-export const uploadPreset = "ReactProject";
-export const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`;

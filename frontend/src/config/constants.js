@@ -15,6 +15,12 @@ export const API_URLS = {
     GET_ALL: SERVICE_BASE_URL + "/api/blogs",
     CREATE: SERVICE_BASE_URL + "/api/blogs",
     DELETE: (id) => SERVICE_BASE_URL + `/api/blogs/${id}`,
+    GET_ONE: (id) => SERVICE_BASE_URL + `/api/blogs/${id}`,
+    IMAGE: (path) => SERVICE_BASE_URL + path,
+  },
+  ADMIN: {
+    STATS: SERVICE_BASE_URL + "/api/admin/stats",
+    USER_LIST: SERVICE_BASE_URL + "/api/admin/user-list",
   },
 };
 
