@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   font-family: "Poppins", sans-serif;
-  // background-color: #2c2b3e;
   color: #ffffff;
   margin: 0;
   padding: 0;

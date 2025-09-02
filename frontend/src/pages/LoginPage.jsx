@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #2c2b3e;
   color: #ffffff;
   margin: 0;
@@ -78,19 +78,19 @@ const Link = styled.a`
 
 function Login() {
   return (
-   <Container>
-          <Card>
-              <Title>Login</Title>
-              <Form>
-                  <Input type="email" placeholder="Email" />
-                  <Input type="password" placeholder="Password" />
-                  <Button type="submit">Login</Button>
-              </Form>
-              <p>
-                  Don't have an account? <Link href="/register">Register</Link>
-              </p>
-          </Card>
-      </Container>
+    <Container>
+      <Card>
+        <Title>Login</Title>
+        <Form>
+          <Input type="email" placeholder="Email" />
+          <Input type="password" placeholder="Password" />
+          <Button type="submit">Login</Button>
+        </Form>
+        <p>
+          Don't have an account? <Link href="/register">Register</Link>
+        </p>
+      </Card>
+    </Container>
   );
 }
 
@@ -110,7 +110,6 @@ function Register() {
           Already have an account? <Link href="/login">Login</Link>
         </p>
       </Card>
- 
     </Container>
   );
 }

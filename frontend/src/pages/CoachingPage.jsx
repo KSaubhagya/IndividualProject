@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Container,
   Header,
@@ -24,9 +24,8 @@ const CoachingPage = () => {
   return (
     <Container>
       <PomPom />
-      {/* Hero Section */}
+
       <Header>
-        {/* <HeroImageDiamond src={supportImage} alt="Coach" /> */}
         <HeroText>
           <h1>Neurodiversity Coaching Centre of Excellence</h1>
           <p>
@@ -55,8 +54,6 @@ const CoachingPage = () => {
           <HeroImageDiamond src={banner} alt="banner" />
         </FeatureCard>
 
-        {/* Features Grid */}
-
         <FeatureGrid>
           <FeatureCard>
             <p>Coaching & Neurodiversity Experts</p>
@@ -72,7 +69,7 @@ const CoachingPage = () => {
           </FeatureCard>
         </FeatureGrid>
       </Section>
-      {/* Coaching Specializations */}
+
       <Section>
         <SectionTitle>What neurodiversity coaching do we offer?</SectionTitle>
         <SpecializationGrid>

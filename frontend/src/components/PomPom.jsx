@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Pom from "../assests/pompom2.png";
 
 const PomPom = () => {
@@ -35,7 +35,6 @@ const PomPom = () => {
       pomPom.style.left = randomX + "px";
       pomPom.style.top = randomY + "px";
 
-      // repeat
       timeoutId = setTimeout(movePomPom, 2000);
     }
 
@@ -53,7 +52,6 @@ const PomPom = () => {
       const dy = e.clientY - pomY;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // If cursor is too close, make pomPom "jump away"
       if (dist < 100) {
         const maxX = window.innerWidth - pomPom.offsetWidth;
         const maxY = window.innerHeight - pomPom.offsetHeight;
@@ -61,7 +59,6 @@ const PomPom = () => {
         let newX = pomX - dx * 1.5;
         let newY = pomY - dy * 1.5;
 
-        // keep within bounds
         newX = Math.max(0, Math.min(maxX, newX));
         newY = Math.max(0, Math.min(maxY, newY));
 
@@ -100,7 +97,7 @@ const PomPom = () => {
         style={{
           width: "100%",
           height: "100%",
-          objectFit: "cover", // stretches/crops to fill
+          objectFit: "cover",
         }}
       />
     </div>

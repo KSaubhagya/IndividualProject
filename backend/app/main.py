@@ -8,7 +8,6 @@ from app.routers import files, user, quiz, blog, admin
 
 app = FastAPI()
 
-# CORS Configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

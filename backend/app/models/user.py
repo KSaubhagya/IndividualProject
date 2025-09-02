@@ -7,5 +7,5 @@ class User(BaseModel):
     username: str
     email: str
     role: str   
-    last_modified: Optional[datetime]  # ISO string  parsed automatically
+    last_modified: Optional[datetime]  
     status: str

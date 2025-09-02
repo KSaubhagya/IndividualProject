@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BlogList, BlogCard, SmallBlogCard } from "../styles/AdminBlogsStyles";
+import { API_URLS } from "../config/constants";
 
 const BlogListSection = ({
   showAdminControls = true,
@@ -10,14 +11,13 @@ const BlogListSection = ({
   const CardComponent = showAdminControls ? BlogCard : SmallBlogCard;
   const [blogs, setBlogs] = useState(propBlogs || []);
 
-  // Only fetch blogs if not provided as props
+  // conditional fetch
   useEffect(() => {
     if (!propBlogs) {
       fetchBlogs();
     }
   }, [propBlogs]);
 
-  // Update internal state if propBlogs changes
   useEffect(() => {
     if (propBlogs) {
       setBlogs(propBlogs);
@@ -26,7 +26,7 @@ const BlogListSection = ({
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch("http://localhost:9000/api/blogs");
+      const response = await fetch(API_URLS.BLOGS.GET_ALL);
       if (response.ok) {
         const data = await response.json();
         setBlogs(data);
@@ -40,14 +40,10 @@ const BlogListSection = ({
     if (onDelete) {
       onDelete(blogId);
     } else {
-      // Your existing handleDelete logic
       try {
-        const response = await fetch(
-          `http://localhost:9000/api/blogs/${blogId}`,
-          {
-            method: "DELETE",
-          }
-        );
+        const response = await fetch(API_URLS.BLOGS.DELETE(blogId), {
+          method: "DELETE",
+        });
 
         if (response.ok) {
           setBlogs(blogs.filter((blog) => blog.id !== blogId));
@@ -69,12 +65,8 @@ const BlogListSection = ({
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <CardComponent>
-            {/* Hide image when not in admin view */}
             {showAdminControls && blog.image && (
-              <img
-                src={`http://localhost:9000${blog.image}`}
-                alt={blog.title}
-              />
+              <img src={API_URLS.BLOGS.IMAGE(blog.image)} alt={blog.title} />
             )}
             <h3>{blog.title}</h3>
             <p>
@@ -84,7 +76,6 @@ const BlogListSection = ({
                 .join(" ")}
             </p>
 
-            {/* Only show date + delete button in admin */}
             {showAdminControls && (
               <>
                 <span>{blog.date}</span>

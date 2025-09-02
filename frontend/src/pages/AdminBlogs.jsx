@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react"; // Added useEffect import
+import { useState, useEffect } from "react";
 import { BlogPageLayout, BlogForm } from "../styles/AdminBlogsStyles";
 import BlogListSection from "../components/BlogListSection";
+import { API_URLS } from "../config/constants";
 
 const AdminBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -14,14 +15,13 @@ const AdminBlogs = () => {
 
   const [imagePreview, setImagePreview] = useState(null);
 
-  //  fetch blogs on component mount
   useEffect(() => {
     fetchBlogs();
   }, []);
 
   const fetchBlogs = async () => {
     try {
-      const response = await fetch("http://localhost:9000/api/blogs");
+      const response = await fetch(API_URLS.BLOGS.GET_ALL);
       if (response.ok) {
         const data = await response.json();
         setBlogs(data);
@@ -36,7 +36,6 @@ const AdminBlogs = () => {
       const file = e.target.files[0];
       setNewBlog({ ...newBlog, image: file });
 
-      // Create preview
       if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -64,7 +63,7 @@ const AdminBlogs = () => {
         formData.append("image", newBlog.image);
       }
 
-      const response = await fetch("http://localhost:9000/api/blogs", {
+      const response = await fetch(API_URLS.BLOGS.CREATE, {
         method: "POST",
         body: formData,
       });
@@ -83,15 +82,11 @@ const AdminBlogs = () => {
     }
   };
 
-  //  delete function
   const handleDelete = async (blogId) => {
     try {
-      const response = await fetch(
-        `http://localhost:9000/api/blogs/${blogId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(API_URLS.BLOGS.DELETE(blogId), {
+        method: "DELETE",
+      });
 
       if (response.ok) {
         setBlogs(blogs.filter((blog) => blog.id !== blogId));
@@ -105,7 +100,6 @@ const AdminBlogs = () => {
 
   return (
     <BlogPageLayout>
-      {/* Form to add new blog */}
       <BlogForm onSubmit={handleSubmit}>
         <h2>Add New Blog</h2>
         <input
@@ -155,7 +149,6 @@ const AdminBlogs = () => {
         <button type="submit">Add Blog</button>
       </BlogForm>
 
-      {/* Existing blogs */}
       <h2 style={{ color: "#ffffff", marginBottom: "20px" }}>Existing Blogs</h2>
       <BlogListSection
         showAdminControls={true}

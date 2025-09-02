@@ -1,4 +1,3 @@
-// src/components/AdminRoute.js
 import { useState, useEffect } from "react";
 import { useAuthContext } from "@asgardeo/auth-react";
 import { Navigate } from "react-router-dom";
@@ -19,7 +18,6 @@ const AdminRoute = ({ children }) => {
       }
 
       try {
-        // fetch the full user info
         const info = await getBasicUserInfo();
         setUserInfo(info);
       } catch (error) {
@@ -39,7 +37,6 @@ const AdminRoute = ({ children }) => {
     return <div>Checking permissions...</div>;
   }
 
-  // Check for admin role
   const roles = userInfo?.roles;
   let isAdmin = false;
 

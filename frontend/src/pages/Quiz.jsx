@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Stack, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -24,31 +24,29 @@ const QuizPage = () => {
   ];
 
   const handleOptionClick = (index) => {
-  setSelectedAnswer(index);
+    setSelectedAnswer(index);
 
-  const updatedAnswers = [...answers];
-  updatedAnswers[currentQuestion] = questions[currentQuestion].options[index];
-  setAnswers(updatedAnswers);
-};
+    const updatedAnswers = [...answers];
+    updatedAnswers[currentQuestion] = questions[currentQuestion].options[index];
+    setAnswers(updatedAnswers);
+  };
 
-  const handleNext = async() => {
+  const handleNext = async () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
     } else {
-
       try {
-      await fetch("http://localhost:9000/quiz", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers }),
-      });
-      console.log("✅ Answers submitted:", answers);
-    } catch (err) {
-      console.error("❌ Error submitting quiz:", err);
-    }
+        await fetch("http://localhost:9000/quiz", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ answers }),
+        });
+        console.log("Answers submitted:", answers);
+      } catch (err) {
+        console.error("Error submitting quiz:", err);
+      }
 
-      // Navigate to FileUpload
       navigate("/FileUpload");
     }
   };
@@ -65,7 +63,6 @@ const QuizPage = () => {
         paddingBottom: "80px",
       }}
     >
-      {/* Quiz Box */}
       <Box
         sx={{
           bgcolor: "#221b35",
@@ -83,7 +80,6 @@ const QuizPage = () => {
           Let's DO this!
         </Typography>
 
-        {/* Question Box */}
         <Box
           sx={{
             border: "2px solid rgba(255, 255, 255, 0.3)",
@@ -99,7 +95,6 @@ const QuizPage = () => {
           {questions[currentQuestion].question}
         </Box>
 
-        {/* Options */}
         <Stack spacing={2}>
           {questions[currentQuestion].options.map((option, index) => (
             <Button
@@ -109,7 +104,9 @@ const QuizPage = () => {
               sx={{
                 color: selectedAnswer === index ? "white" : "#ddd",
                 borderColor:
-                  selectedAnswer === index ? "#9b88ff" : "rgba(255, 255, 255, 0.3)",
+                  selectedAnswer === index
+                    ? "#9b88ff"
+                    : "rgba(255, 255, 255, 0.3)",
                 borderRadius: "30px",
                 fontWeight: selectedAnswer === index ? "bold" : "normal",
                 "&:hover": {
@@ -124,7 +121,6 @@ const QuizPage = () => {
           ))}
         </Stack>
 
-        {/* Navigation Dots */}
         <Stack direction="row" justifyContent="center" spacing={1} mt={3}>
           {questions.map((_, index) => (
             <Box
@@ -140,7 +136,6 @@ const QuizPage = () => {
           ))}
         </Stack>
 
-        {/* Next/Finish Button */}
         <Button
           variant="contained"
           onClick={handleNext}

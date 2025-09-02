@@ -29,8 +29,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(44, 43, 62, 0.8); /* adjust opacity (0.0 - 1.0) */
-    z-index: -1; /* stay behind content */
+    background: rgba(44, 43, 62, 0.8); 
+    z-index: -1; 
   }
 `;
 

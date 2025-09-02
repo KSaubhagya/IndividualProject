@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   font-family: "Poppins", sans-serif;
-  // background-color: #2c2b3e;
   color: #ffffff;
   margin: 0;
   padding: 0;
@@ -76,7 +75,6 @@ export const Features = styled.section`
 
 export const AboutSection = styled.section`
   padding: 80px 20px;
-  // background-color: #2c2b3e;
   .divider {
     height: 2px;
     background: linear-gradient(90deg, transparent, #6c63ff, transparent);

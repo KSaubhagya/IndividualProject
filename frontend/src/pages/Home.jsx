@@ -1,4 +1,3 @@
-import React from "react";
 import { Book } from "@mui/icons-material";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import UploadIcon from "@mui/icons-material/Upload";

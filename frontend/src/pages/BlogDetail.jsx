@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { API_URLS } from "../config/constants";
 
-const BlogDetails = ({ isAdmin = false }) => {
+const BlogDetails = ({}) => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`http://localhost:9000/api/blogs/${id}`);
+        const response = await fetch(API_URLS.BLOGS.GET_ONE(id));
         if (response.ok) {
           const data = await response.json();
           setBlog(data);
@@ -23,7 +24,6 @@ const BlogDetails = ({ isAdmin = false }) => {
 
   if (!blog) return <p>Loading...</p>;
 
-  // Split content into paragraphs
   const paragraphs = blog.content
     .split(/\n|\.\s+/)
     .filter((p) => p.trim().length > 0);
@@ -37,10 +37,9 @@ const BlogDetails = ({ isAdmin = false }) => {
         margin: "0 auto",
       }}
     >
-      {/* Fixed-size image */}
       {blog.image && (
         <img
-          src={`http://localhost:9000${blog.image}`}
+          src={API_URLS.BLOGS.IMAGE(blog.image)}
           alt={blog.title}
           style={{
             width: "100%",

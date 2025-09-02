@@ -25,7 +25,6 @@ import GlobalStyle from "./styles/GlobalStyle";
 function App() {
   const { state } = useAuthContext();
 
-  // Loading state
   if (state.isLoading) {
     return <Loading />;
   }

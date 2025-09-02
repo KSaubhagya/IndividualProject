@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuthContext } from "@asgardeo/auth-react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -88,7 +88,7 @@ const FileUpload = () => {
       setUploading(true);
       const token = await getAccessToken();
 
-      // 1. Send file to backend for processing
+      // Send file to backend
       const formData = new FormData();
       formData.append("file", file);
       formData.append("text_size", options.textSize || 16);
@@ -129,7 +129,7 @@ const FileUpload = () => {
           processedUrl,
         });
 
-        // 3. Save Cloudinary URLs to database
+        // Save Cloudinary URLs to db
         const saveResponse = await axios.post(
           `${API.SAVE_CLOUDINARY_URLS}`,
           {
@@ -152,7 +152,7 @@ const FileUpload = () => {
           setFileName("");
           setPreviewUrl(null);
 
-          // Set the URLs for download buttons
+          // Set the URLs for download
           setOriginalFileUrl(originalUrl);
           setProcessedFileUrl(API.DOWNLOAD(file_id));
         }
@@ -327,7 +327,6 @@ const FileUpload = () => {
           </div>
         )}
 
-        {/* Upload Button */}
         <Button
           variant="contained"
           sx={{
@@ -343,7 +342,6 @@ const FileUpload = () => {
           {uploading ? "Processing..." : "Upload"}
         </Button>
 
-        {/* Download Buttons */}
         {processedFileUrl && (
           <Button
             variant="outlined"
