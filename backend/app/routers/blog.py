@@ -67,7 +67,7 @@ async def create_blog(
         
         # Create new blog entry
         new_blog = {
-            "id": len(blogs) + 1,
+            "id": max([blog["id"] for blog in blogs], default=0) + 1,
             "title": title,
             "author": author,
             "content": content,

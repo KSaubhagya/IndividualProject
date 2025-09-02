@@ -19,7 +19,7 @@ router = APIRouter(prefix="/files", tags=["files"])
 PROCESSED_DIR = "processed_files"
 os.makedirs(PROCESSED_DIR, exist_ok=True)
 
-# text extraction functions 
+# text extraction 
 def extract_pdf_text(path: str) -> str:
     try:
         doc = fitz.open(path)
@@ -104,7 +104,7 @@ async def process_file(
         else:
             create_styled_pdf_text(text, output_file=output_pdf_path, options=styling_options)
 
-        # Clean up temp file
+        
         os.unlink(tmp_path)
         
         # Store file metadata in database

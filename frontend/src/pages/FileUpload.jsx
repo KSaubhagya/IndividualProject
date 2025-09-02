@@ -108,13 +108,12 @@ const FileUpload = () => {
       if (processResponse.data.success) {
         const { file_id, original_filename } = processResponse.data;
 
-        // 2. Upload both files to Cloudinary
         console.log("Uploading files to Cloudinary...");
 
         // Upload original file to Cloudinary
         const originalUrl = await uploadToCloudinary(file, "originals");
 
-        // Create processed file for Cloudinary upload
+        // Create processed file
         const processedFile = new File(
           [file],
           `processed_${original_filename}`,

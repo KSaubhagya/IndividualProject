@@ -2,13 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BlogList, BlogCard, SmallBlogCard } from "../styles/AdminBlogsStyles";
 
-const BlogListSection = ({ showAdminControls = true }) => {
+const BlogListSection = ({
+  showAdminControls = true,
+  blogs: propBlogs,
+  onDelete,
+}) => {
   const CardComponent = showAdminControls ? BlogCard : SmallBlogCard;
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState(propBlogs || []);
 
+  // Only fetch blogs if not provided as props
   useEffect(() => {
-    fetchBlogs();
-  }, []);
+    if (!propBlogs) {
+      fetchBlogs();
+    }
+  }, [propBlogs]);
+
+  // Update internal state if propBlogs changes
+  useEffect(() => {
+    if (propBlogs) {
+      setBlogs(propBlogs);
+    }
+  }, [propBlogs]);
 
   const fetchBlogs = async () => {
     try {
@@ -22,20 +36,25 @@ const BlogListSection = ({ showAdminControls = true }) => {
     }
   };
 
-  const handleDelete = async (blogId) => {
-    try {
-      const response = await fetch(
-        `http://localhost:9000/api/blogs/${blogId}`,
-        {
-          method: "DELETE",
-        }
-      );
+  const handleDeleteClick = async (blogId) => {
+    if (onDelete) {
+      onDelete(blogId);
+    } else {
+      // Your existing handleDelete logic
+      try {
+        const response = await fetch(
+          `http://localhost:9000/api/blogs/${blogId}`,
+          {
+            method: "DELETE",
+          }
+        );
 
-      if (response.ok) {
-        setBlogs(blogs.filter((blog) => blog.id !== blogId));
+        if (response.ok) {
+          setBlogs(blogs.filter((blog) => blog.id !== blogId));
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } catch (error) {
-      console.error("Error:", error);
     }
   };
 
@@ -61,7 +80,7 @@ const BlogListSection = ({ showAdminControls = true }) => {
             <p>
               {blog.content
                 .split(/(?<=[.!?])\s+/)
-                .slice(0, 1)
+                .slice(0, showAdminControls ? 1 : 2)
                 .join(" ")}
             </p>
 
@@ -72,7 +91,7 @@ const BlogListSection = ({ showAdminControls = true }) => {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    handleDelete(blog.id);
+                    handleDeleteClick(blog.id);
                   }}
                   style={{
                     background: "#6c63ff",

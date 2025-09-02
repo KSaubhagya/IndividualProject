@@ -54,7 +54,7 @@ def create_styled_pdf_pdf(input_path: str, output_file="output.pdf", options=Non
         # Step 4: Convert DOCX -> PDF
         docx2pdf_convert(styled_docx, output_file)
 
-        # Cleanup temp files
+        
         if os.path.exists(temp_docx):
             os.remove(temp_docx)
         if os.path.exists(styled_docx):
@@ -70,7 +70,7 @@ def create_styled_pdf_text(text: str, output_file="output.pdf", options=None) ->
         options = {}
     
     try:
-        # Map font names to standard PDF fonts that ReportLab supports
+        
         font_mapping = {
             "Arial": "Helvetica",
             "Verdana": "Helvetica", 
@@ -80,20 +80,20 @@ def create_styled_pdf_text(text: str, output_file="output.pdf", options=None) ->
         
         doc = SimpleDocTemplate(output_file, pagesize=letter)
         
-        # Get options with defaults
+      
         text_size = options.get('textSize', 12)
         font_name = options.get('font', 'Arial')
         text_color = options.get('themeColor', '#0000ff')
         spacing = options.get('spacing', False)
         
-        # Use mapped font (standard PDF font)
+       
         mapped_font = font_mapping.get(font_name, "Helvetica")
         
         # Convert hex to RGB for ReportLab
         rgb_color = hex_to_rgb(text_color)
         reportlab_color = colors.Color(rgb_color[0]/255, rgb_color[1]/255, rgb_color[2]/255)
         
-        # Create style with options
+        # Create style 
         style = ParagraphStyle(
             "Custom",
             fontName=mapped_font,

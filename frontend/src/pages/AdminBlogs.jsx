@@ -158,9 +158,9 @@ const AdminBlogs = () => {
       {/* Existing blogs */}
       <h2 style={{ color: "#ffffff", marginBottom: "20px" }}>Existing Blogs</h2>
       <BlogListSection
+        showAdminControls={true}
         blogs={blogs}
-        handleDelete={handleDelete}
-        showDelete={true}
+        onDelete={handleDelete}
       />
     </BlogPageLayout>
   );
