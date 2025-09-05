@@ -45,8 +45,7 @@ This project aims to develop a personalized learning platform for students with 
     </li>
       <li><strong>6. Set up and run the frontend</strong>
       <pre><code>cd frontend</code></pre>
-      <pre><code>cd frontend
-      npm install</code></pre>
+      <pre><code>npm install</code></pre>
       <pre><code>npm start</code></pre>
     </li></ol>
 
