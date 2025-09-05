@@ -14,38 +14,38 @@ This project aims to develop a personalized learning platform for students with 
 
 ---
 
-## Startup Instructions
 
-Follow these steps to set up and run the project:
-
-### 1. Clone the repository
-```bash
-git clone <your-repo-url>
-cd <your-repo-folder>
-
-2. Create a virtual environment
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS/Linux
-python3 -m venv venv
-source venv/bin/activate
-
-3. Install backend dependencies
-pip install -r backend/requirements.txt
-
-4. Set up environment variables
-Create a .env file in the backend folder and configure variables such as:
-DATABASE_URL=<your-database-url>
-SECRET_KEY=<your-secret-key>
-
-5. Run the backend server
-# From the backend folder
-uvicorn main:app --reload
-
-6. Set up and run the frontend
-cd frontend
-npm install
-npm start
+<h2>📋 Startup Instructions</h2>
+  <ol>
+    <li><strong>1.Clone the Repository</strong>
+      <pre><code>git clone <repository-url></code></pre>
+      <pre><code>cd <repository-directory></code></pre>
+    </li>
+    <li><strong>2. Create a virtual environment</strong>
+      <pre><code># Windows
+        python -m venv venv
+        venv\Scripts\activate
+      </code></pre>
+       <pre><code># macOS/Linux
+       python3 -m venv venv
+       source venv/bin/activate</code></pre>
+    </li>
+     <li><strong>3. Install backend dependencies</strong>
+      <pre><code>pip install -r backend/requirements.txt</code></pre>
+    </li>
+    <li><strong>4. Set up environment variables</strong>
+      <pre><code>Create a .env file in the backend folder and configure variables such as:
+      DATABASE_URL=<your-database-url>
+      SECRET_KEY=<your-secret-key></code></pre>
+    </li>
+      <li><strong>5. Run the backend server</strong>
+      <pre><code># From the backend folder
+       uvicorn main:app --reload</code></pre>
+    </li>
+    </li>
+      <li><strong>6. Set up and run the frontend</strong>
+      <pre><code>cd frontend
+      npm install
+      npm start</code></pre>
+    </li></ol>
 
