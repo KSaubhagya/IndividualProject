@@ -16,14 +16,14 @@ This project aims to develop a personalized learning platform for students with 
 
 ## Key Functionalities:
 
--Secure authentication flows, including traditional login and social login for streamlined user onboarding.
--Processed notes feature to provide structured, distraction-free learning content tailored for ADHD learners.
--Blog modules to enhance neuro-awareness for educators and students to access resources on ADHD-related learning strategies.
--Integrated role-based access control (RBAC) to define permissions for students, educators, and administrators.
--Developed a consultant service module to enable personalized academic and behavioral guidance for students.
--Created an admin panel with analytics, offering insights into student engagement, content usage, and system performance.
--Enabled blog viewing and publishing workflows, supporting content creation and knowledge sharing.
--Incorporated animations and interactive UI elements to increase user engagement and improve focus for ADHD students.
+- Secure authentication flows, including traditional login and social login for streamlined user onboarding.
+- Processed notes feature to provide structured, distraction-free learning content tailored for ADHD learners.
+- Blog modules to enhance neuro-awareness for educators and students to access resources on ADHD-related learning strategies.
+- Integrated role-based access control (RBAC) to define permissions for students, educators, and administrators.
+- Developed a consultant service module to enable personalized academic and behavioral guidance for students.
+- Created an admin panel with analytics, offering insights into student engagement, content usage, and system performance.
+- Enabled blog viewing and publishing workflows, supporting content creation and knowledge sharing.
+- Incorporated animations and interactive UI elements to increase user engagement and improve focus for ADHD students.
 
 
 <h2>📋 Startup Instructions</h2>
