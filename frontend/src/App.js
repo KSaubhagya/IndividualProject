@@ -21,6 +21,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import AccessDenied from "./components/AccessDenied";
 import GlobalStyle from "./styles/GlobalStyle";
+import Feedback from "./pages/FeedbackForm";
 
 function App() {
   const { state } = useAuthContext();
@@ -87,6 +88,14 @@ function App() {
             element={
               <ProtectedRoute isAuthenticated={state.isAuthenticated}>
                 <Coaching />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/feedback"
+            element={
+              <ProtectedRoute isAuthenticated={state.isAuthenticated}>
+                <Feedback />
               </ProtectedRoute>
             }
           />
