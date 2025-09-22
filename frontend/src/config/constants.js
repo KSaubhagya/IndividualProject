@@ -22,6 +22,9 @@ export const API_URLS = {
     STATS: SERVICE_BASE_URL + "/api/admin/stats",
     USER_LIST: SERVICE_BASE_URL + "/api/admin/user-list",
   },
+  FEEDBACK: {
+    SUBMIT: SERVICE_BASE_URL + "/feedback/",
+  },
 };
 
 // Cloudinary config

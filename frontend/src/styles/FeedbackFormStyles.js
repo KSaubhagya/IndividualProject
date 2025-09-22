@@ -4,7 +4,6 @@ export const FeedbackContainer = styled.div`
   max-width: 600px;
   margin: 100px auto;
   padding: 40px;
-  background-color: #2c2b3e;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   text-align: center;

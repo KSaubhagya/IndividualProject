@@ -11,10 +11,12 @@ import {
   ErrorMessage,
   SubmitButton,
 } from "../styles/FeedbackFormStyles";
+import { API_URLS } from "../config/constants";
+import PomPom from "../components/PomPom";
 
 const FeedbackForm = () => {
-  const [isUseful, setIsUseful] = useState(""); // Was e-ad useful?
-  const [experience, setExperience] = useState(""); // How was your experience?
+  const [isUseful, setIsUseful] = useState("");
+  const [experience, setExperience] = useState("");
   const [feedback, setFeedback] = useState("");
   const [rating, setRating] = useState(0);
   const [error, setError] = useState("");
@@ -32,7 +34,7 @@ const FeedbackForm = () => {
     const feedbackData = { isUseful, experience, feedback, rating };
 
     try {
-      const response = await fetch("http://localhost:9000/feedback/", {
+      const response = await fetch(API_URLS.FEEDBACK.SUBMIT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(feedbackData),
@@ -45,7 +47,6 @@ const FeedbackForm = () => {
       const data = await response.json();
       alert(`Feedback submitted successfully!`);
 
-      // Reset form
       setIsUseful("");
       setExperience("");
       setFeedback("");
@@ -58,6 +59,7 @@ const FeedbackForm = () => {
 
   return (
     <FeedbackContainer>
+      <PomPom />
       <h2>Submit Feedback</h2>
       <Form onSubmit={handleSubmit}>
         <InputGroup>

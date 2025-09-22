@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import {
   Box,
   Stack,
@@ -17,6 +19,7 @@ import {
 import logo from "../assests/logo.png";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -123,6 +126,7 @@ const Footer = () => {
             }}
           >
             <Button
+              onClick={() => navigate("/feedback")}
               variant="contained"
               sx={{
                 bgcolor: "#9b88ff",
@@ -132,7 +136,7 @@ const Footer = () => {
                 "&:hover": { bgcolor: "#7748ff" },
               }}
             >
-              BUILD YOUR WORLD
+              GIVE FEEDBACK
             </Button>
           </Box>
         </Box>
