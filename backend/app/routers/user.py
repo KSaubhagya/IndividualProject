@@ -6,7 +6,15 @@ router = APIRouter()
 
 @router.post("/users")
 async def create_user(user: User, mongo: MongoDB = Depends(get_db)):
-    
+    """
+    Create a new user in the database.
+
+    - **email**: user email
+    - **name**: full name of the user  
+    - **role**: user roles
+    - **last_modified**: last modified time and date
+    - **status**: whether user is active
+    """
     existing_user = await mongo.users.find_one({"email": user.email})
     if existing_user:
         raise HTTPException(status_code=400, detail="User already exists")

@@ -247,7 +247,6 @@ const FileUpload = () => {
     <Box
       sx={{
         minHeight: "100vh",
-        bgcolor: "#1a1528",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
