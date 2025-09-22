@@ -55,6 +55,16 @@ async def process_file(
     spacing: bool = Form(False),
     db=Depends(get_db)
 ):
+    """
+    Process an uploaded file and convert it into a styled PDF.
+
+    - **file**: uploaded file (PDF, DOCX, image formats supported)  
+    - **text_size**: size of the text in the output  
+    - **font**: font style used in styling
+    - **theme_color**: primary theme color 
+    - **spacing**: whether to apply extra spacing between lines  
+    - **db**: MongoDB dependency for storing metadata
+    """
     try:
         # Generate a unique filename
         file_id = str(uuid.uuid4())
@@ -134,7 +144,14 @@ async def save_cloudinary_urls(
     file_data: dict,
     db=Depends(get_db)
 ):
-    """Store Cloudinary URLs after frontend uploads"""
+    """
+    Save the urls to the database.
+
+    - **original_file_url**: url of the original file 
+    - **processed_file_url**: url of the processed file
+    - **cloudinary_upload_date**: upload date of the file
+    - **status**: uploaded status
+    """
     try:
         # Update with Cloudinary URLs
         await db.files.update_one(
@@ -157,7 +174,13 @@ async def save_cloudinary_urls(
 
 @router.get("/download/{file_id}")
 async def download_file(file_id: str, db=Depends(get_db)):
-    """Download processed file from backend (not Cloudinary)"""
+    """
+    Download the file from the backend.
+
+    - **file_path**: file path of the processed file
+    - **filename**: file name of the processed file
+    - **media_type**: media type of the processed file
+    """
     try:
         # Find file metadata
         file_doc = await db.files.find_one({"file_id": file_id})

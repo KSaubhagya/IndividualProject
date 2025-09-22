@@ -12,6 +12,12 @@ async def get_dashboard_stats(
     db: MongoDB = Depends(get_db),
     _: None = Depends(verify_admin_access)
 ):
+    """
+    Retrieve admin dashboard statistics.
+
+    - **totalUsers**: total number of registered users  
+    - **totalFiles**: total number of uploaded files  
+    """
     try:
         total_users = await db.users.count_documents({})
         total_files = await db.files.count_documents({})
@@ -30,6 +36,15 @@ async def get_admin_user_list(
     db: MongoDB = Depends(get_db),
     _: None = Depends(verify_admin_access)
 ):
+    """
+    Retrieve a list of users for admin.
+
+    - **id**: unique user identifier  
+    - **username**: username of the user  
+    - **email**: email address of the user  
+    - **status**: account status (active/inactive)  
+    - **last_modified**: last updated date and time  
+    """
     try:
         # Fetch users 
         users_cursor = db.users.find({}, {

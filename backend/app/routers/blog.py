@@ -30,11 +30,27 @@ def save_blogs(blogs):
 
 @router.get("/", response_model=List[dict])
 async def get_blogs():
+    """
+    Retrieve all available blogs.
+
+    - **id**: unique identifier of the blog
+    - **title**: title of the blog
+    - **content**: content  of the blog
+    - **image_path**: image path of the blog
+    - **date**: posted date  of the blog
+    - **returns**: list of blog objects, 404 error
+    """
     blogs = load_blogs()
     return blogs
 
 @router.get("/{blog_id}", response_model=dict)
 async def get_blog(blog_id: int):
+    """
+    Retrieve a single blog by its ID.
+
+    - **id**: unique identifier of the blog  
+    - **returns**: blog object if found, 404 error
+    """
     blogs = load_blogs()
     for blog in blogs:
         if blog["id"] == blog_id:
@@ -49,6 +65,16 @@ async def create_blog(
     content: str = Form(...),
     image: UploadFile = File(None)
 ):
+    """
+    Create a new blog entry.
+
+    - **title**: title of the blog
+    - **author**: name of the blog author 
+    - **content**: content  of the blog
+    - **image_path**: image path of the blog
+    - **date**: posted date  of the blog
+    - **returns**: the newly created blog object
+    """
     try:
         image_filename = None
         if image and image.filename:
@@ -85,6 +111,12 @@ async def create_blog(
 
 @router.delete("/{blog_id}")
 async def delete_blog(blog_id: int):
+    """
+    Delete a blog by its ID.
+
+    - **id**: unique identifier of the blog  
+    - **returns**: success message if deletion is successful
+    """
     try:
         blogs = load_blogs()
         
