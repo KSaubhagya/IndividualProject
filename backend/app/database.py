@@ -13,7 +13,6 @@ class MongoDB:
         self.db = None
         self.files = None
         self.users = None
-        self.quiz = None
         self.feedback = None
 
     async def connect(self):
@@ -23,7 +22,6 @@ class MongoDB:
             self.db = self.client[os.getenv("MONGO_DB_NAME")]
             self.files = self.db["files"]
             self.users = self.db["users"] 
-            self.quiz = self.db["quiz"] 
             self.feedback = self.db["feedback"] 
            
             await self.client.admin.command("ping")
