@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# custom ignore
-public/config.js
+# environment variables
+.env.local

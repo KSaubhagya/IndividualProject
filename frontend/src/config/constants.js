@@ -29,8 +29,8 @@ export const API_URLS = {
 
 // Cloudinary config
 export const CLOUDINARY = {
-  CLOUD_NAME: "kavindi",
-  UPLOAD_PRESET: "ReactProject",
+  CLOUD_NAME: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+  UPLOAD_PRESET: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET,
   UPLOAD_URL: (cloudName) =>
     `https://api.cloudinary.com/v1_1/${cloudName}/upload`,
 };
