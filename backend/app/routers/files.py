@@ -122,7 +122,7 @@ async def process_file(
             "upload_date": datetime.now(timezone.utc),
             "file_extension": file_extension,
             "processed_file_path": output_pdf_path,
-            "styling_options": styling_options,  # Store 
+            "styling_options": styling_options,  
             "status": "processed"
         }
         result = await db.files.insert_one(doc)
