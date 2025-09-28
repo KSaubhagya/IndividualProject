@@ -1,6 +1,9 @@
-FROM python:3.13.2-slim
+FROM python:3.13.2-alpine
 
 WORKDIR /app
+
+# Install security updates
+RUN apk update && apk upgrade
 
 # Copy requirements and install dependencies
 COPY requirements.txt .
@@ -9,8 +12,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Create and use a user with ID in Choreo's required range (10000-20000)
-RUN adduser --disabled-password --gecos '' --uid 10014 myuser
+# Create and use a user with ID in Choreo's required range
+RUN adduser -D -u 10014 myuser
 USER 10014
 
 # Expose port
