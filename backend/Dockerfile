@@ -9,9 +9,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Add non-root user (simple version)
-RUN useradd -m myuser
-USER myuser
+# Create and use a user with ID in Choreo's required range (10000-20000)
+RUN adduser --disabled-password --gecos '' --uid 10014 myuser
+USER 10014
 
 # Expose port
 EXPOSE 8080
