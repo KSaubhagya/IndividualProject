@@ -207,7 +207,7 @@ const Navbar = () => {
 
       {state.isAuthenticated ? (
         <UserProfile>
-          <span>{state.username || state.email}</span>
+          <span>{state.displayName || state.email}</span>
           <ContactButton onClick={() => signOut()}>LOG OUT</ContactButton>
         </UserProfile>
       ) : (
