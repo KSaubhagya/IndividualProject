@@ -111,8 +111,8 @@ const AdminDashboard = () => {
             <p>{dashboardStats?.totalFiles ?? "0"}</p>
           </StatCard>
           <StatCard>
-            <h3>Crashes</h3>
-            <p>0</p>
+            <h3>Feedbacks</h3>
+            <p>{dashboardStats?.totalFeedbacks ?? "0"}</p>
           </StatCard>
           <StatCard>
             <h3>Reported</h3>

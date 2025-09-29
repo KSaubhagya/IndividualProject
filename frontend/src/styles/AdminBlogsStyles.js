@@ -4,7 +4,6 @@ export const BlogPageLayout = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #2c2b3e;
   padding: 30px;
 `;
 

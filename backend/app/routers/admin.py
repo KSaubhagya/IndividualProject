@@ -16,16 +16,19 @@ async def get_dashboard_stats(
     Retrieve admin dashboard statistics.
 
     - **totalUsers**: total number of registered users  
-    - **totalFiles**: total number of uploaded files  
+    - **totalFiles**: total number of uploaded files
+    - **totalFeedbacks**: total number of feedbacks recieved  
     """
     try:
         total_users = await db.users.count_documents({})
         total_files = await db.files.count_documents({})
+        total_feedbacks = await db.feedback.count_documents({})
        
         
         return {
             "totalUsers": total_users,
             "totalFiles": total_files,
+            "totalFeedbacks": total_feedbacks,
            
         }
     except Exception as e:
