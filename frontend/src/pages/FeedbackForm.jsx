@@ -44,7 +44,6 @@ const FeedbackForm = () => {
         throw new Error("Failed to submit feedback");
       }
 
-      const data = await response.json();
       alert(`Feedback submitted successfully!`);
 
       setIsUseful("");
