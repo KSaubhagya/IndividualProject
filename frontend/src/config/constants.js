@@ -1,4 +1,4 @@
-const SERVICE_BASE_URL = "http://localhost:9000";
+const SERVICE_BASE_URL = process.env.REACT_APP_SERVICE_BASE_URL;
 
 export const API_URLS = {
   USER: {

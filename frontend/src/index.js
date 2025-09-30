@@ -10,10 +10,11 @@ root.render(
   <React.StrictMode>
     <AuthProvider
       config={{
-        signInRedirectURL: "http://localhost:3000",
-        signOutRedirectURL: "http://localhost:3000",
-        clientID: "8gnCKMv6fPGmV8cif5S9Km7fRxAa",
-        baseUrl: "https://api.asgardeo.io/t/kavindi",
+        signInRedirectURL: process.env.REACT_APP_ASGARDEO_SIGN_IN_REDIRECT_URL,
+        signOutRedirectURL:
+          process.env.REACT_APP_ASGARDEO_SIGN_OUT_REDIRECT_URL,
+        clientID: process.env.REACT_APP_ASGARDEO_CLIENT_ID,
+        baseUrl: process.env.REACT_APP_ASGARDEO_BASE_URL,
         scope: ["openid", "profile", "roles"],
       }}
     >
