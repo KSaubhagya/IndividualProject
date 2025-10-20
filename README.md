@@ -35,54 +35,37 @@ project-root/
 ├── backend/ # Backend application (API, authentication, database handling)
 │ ├── app/
 │ │ ├── init.py
-│ │ ├── main.py # Entry point for the backend server (FastAPI/Django)
-│ │ ├── models/ # Database models (User, StudentProfile, LearningContent, etc.)
+│ │ ├── main.py # Entry point for the backend server 
+│ │ ├── models/ # Database models 
 │ │ ├── routes/ # API route handlers (auth, content, analytics)
 │ │ ├── services/ # Business logic (recommendation engine, adaptive learning)
 │ │ ├── schemas/ # Pydantic models for data validation and serialization
-│ │ ├── core/ # Core utilities (config, dependencies, constants)
-│ │ └── utils/ # Helper functions (token generation, data processing)
+│ │ ├── core/ # Core utilities 
+│ │ └── utils/ # Helper functions
 │ │
-│ ├── tests/ # Unit and integration tests for backend
-│ ├── requirements.txt # Python dependencies
-│ └── .env.example # Example environment variables for backend setup
+│ ├── tests/ # Unit and integration tests 
+│ ├── requirements.txt 
+│ └── .env.example 
 │
 ├── frontend/ # Frontend web application (React/Next.js)
 │ ├── src/
-│ │ ├── components/ # Reusable UI components (buttons, inputs, modals)
-│ │ ├── pages/ # Page-level views (Dashboard, Profile, Learning Modules)
-│ │ ├── hooks/ # Custom React hooks for state and logic handling
-│ │ ├── context/ # Global context providers (auth, theme, user preferences)
-│ │ ├── services/ # API calls to backend (axios or fetch implementations)
-│ │ ├── styles/ # Global and modular CSS or Tailwind configurations
+│ │ ├── components/
+│ │ ├── pages/ # Page-level views 
+│ │ ├── styles/
 │ │ └── utils/ # Frontend helper functions and constants
 │ │
-│ ├── public/ # Static assets served directly (favicon, manifest, icons)
-│ ├── package.json # Node.js dependencies and scripts
-│ ├── .env.example # Example environment variables for frontend
-│ └── vite.config.js / next.config.js# Frontend configuration file
+│ ├── public/ # Static assets served 
+│ ├── package.json 
+│ ├── .env.example 
 │
-├── assets/ # Shared assets (logos, illustrations, accessibility icons)
+├── assets/ 
 │ ├── images/
 │ ├── icons/
 │ └── fonts/
 │
-├── scripts/ # Utility or deployment scripts
-│ ├── setup_db.py # Script to initialize or seed the database
-│ ├── build_frontend.sh # Shell script to build frontend for deployment
-│ └── deploy.sh # Deployment automation script
-│
-├── docs/ # Documentation and references
-│ ├── architecture.md # System architecture and data flow explanation
-│ ├── api_reference.md # API endpoint documentation
-│ └── design_guidelines.md # UI/UX guidelines and accessibility notes
-│
-├── tests/ # End-to-end testing or combined testing utilities
-│
 ├── .gitignore # Ignored files and folders for Git
-├── LICENSE # Project license file
-├── README.md # Project documentation
-└── requirements.txt / package.json # High-level dependency management files
+├── README.md 
+└── requirements.txt 
 ```
 ---
 
