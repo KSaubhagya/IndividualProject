@@ -32,7 +32,7 @@ This project aims to develop a personalized learning platform for students with 
 ```plaintext
 project-root/
 │
-├── backend/ # Backend application (API, authentication, database handling)
+├── backend/ # Backend application (API, database handling)
 │ ├── app/
 │ │ ├── init.py
 │ │ ├── main.py # Entry point for the backend server 
