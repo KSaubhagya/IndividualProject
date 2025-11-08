@@ -38,7 +38,7 @@ project-root/
 │ │ ├── main.py # Entry point for the backend server 
 │ │ ├── models/ # Database models 
 │ │ ├── routes/ # API route handlers (auth, content, analytics)
-│ │ ├── services/ # Business logic (recommendation engine, adaptive learning)
+│ │ ├── services/ # Business logic (adaptive learning)
 │ │ ├── schemas/ # Pydantic models for data validation and serialization
 │ │ ├── core/ # Core utilities 
 │ │ └── utils/ # Helper functions
