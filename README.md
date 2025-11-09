@@ -5,7 +5,7 @@ This project aims to develop a personalized learning platform for students with 
 
 ## Objectives
 
-- **Personalized Content:** Adapt learning materials based on individual ADHD profiles.  
+- **Personalized Content:** Personalize learning materials based on individual ADHD profiles.  
 - **Adaptive Learning Pathways:** Enhance engagement and academic performance through tailored learning journeys.  
 - **Integrated Accessibility Tools:** Consolidate isolated solutions into a single platform.  
 - **Continuous Support:** Adjust content delivery as students progress through educational  stages.  
