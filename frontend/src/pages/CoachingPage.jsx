@@ -30,7 +30,7 @@ const CoachingPage = () => {
           <h1>Neurodiversity Coaching Centre of Excellence</h1>
           <p>
             Delivering the highest quality coaching to employees throughout
-            their career.
+            their careers.
           </p>
           <Button
             onClick={() =>
