@@ -12,7 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
-# Create and use a user with ID in Choreo's required range
+# Create and use a user with ID in Choreo's range
 RUN adduser -D -u 10014 myuser
 USER 10014
 
